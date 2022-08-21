@@ -8,11 +8,13 @@ class CustomTextField extends StatelessWidget {
   // true = int, false = string
   final bool isTime;
   final FormFieldSetter<String> onSaved;
+  final String initialValue;
 
   const CustomTextField({
     required this.title,
     required this.isTime,
     required this.onSaved,
+    required this.initialValue,
     Key? key,
   }) : super(key: key);
 
@@ -37,6 +39,7 @@ class CustomTextField extends StatelessWidget {
   Widget renderTextField() {
     return TextFormField(
       onSaved: onSaved,
+      initialValue: initialValue,
       validator: (String? val) {
         if (val == null || val.isEmpty) {
           return '값을 입력해주세요.';
@@ -72,6 +75,7 @@ class CustomTextField extends StatelessWidget {
         border: InputBorder.none,
         filled: true,
         fillColor: Colors.grey[300],
+        suffixText: isTime ? '시' : null,
       ),
     );
   }
